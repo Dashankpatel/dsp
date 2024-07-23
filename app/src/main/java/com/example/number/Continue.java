@@ -12,12 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.viewpager.widget.ViewPager;
 
 public class Continue extends AppCompatActivity {
 
     TextView txt;
-    ImageView img;
-    Button remove,sub,d1,d2,d3,d4,d5,d6,d7,d8,d9,d0;
+    ViewPager vpager;
+    int t=0;
+    Button remove,sub,d1,d2,d3,d4,d5,d6,d7,d8,d9,d0,skip;
 
     int imagearray[]={R.drawable.p1,R.drawable.p2,R.drawable.p3,R.drawable.p4,R.drawable.p5,
             R.drawable.p6,R.drawable.p7,R.drawable.p8,R.drawable.p9,R.drawable.p10};
@@ -33,10 +35,29 @@ public class Continue extends AppCompatActivity {
 
         String s = getIntent().getStringExtra("nothing");
 
-        img = findViewById(R.id.que);
+        int k = getIntent().getIntExtra("ds",0);
 
 
-        Myclass dp =new Myclass(Continue.this,imagearray);
+        vpager = findViewById(R.id.vpager);
+        skip = findViewById(R.id.skip);
+
+        MyPagerAdapter dp = new MyPagerAdapter(this,imagearray);
+        vpager.setAdapter(dp);
+
+        vpager.setCurrentItem(k);
+        t=vpager.getCurrentItem();
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                t++;
+                vpager.setCurrentItem(t);
+            }
+        });
+
+
+        vpager.setCurrentItem(0);
+
 
         txt = findViewById(R.id.anstext);
 
