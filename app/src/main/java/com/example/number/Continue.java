@@ -1,6 +1,7 @@
 package com.example.number;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,51 +17,27 @@ import androidx.viewpager.widget.ViewPager;
 
 public class Continue extends AppCompatActivity {
 
-    TextView txt;
-    ViewPager vpager;
-    int t=0;
-    Button remove,sub,d1,d2,d3,d4,d5,d6,d7,d8,d9,d0,skip;
+    TextView txt, board;
+    ImageView puz;
+    Button remove, sub, d1, d2, d3, d4, d5, d6, d7, d8, d9, d0,skip;
 
-    int imagearray[]={R.drawable.p1,R.drawable.p2,R.drawable.p3,R.drawable.p4,R.drawable.p5,
-            R.drawable.p6,R.drawable.p7,R.drawable.p8,R.drawable.p9,R.drawable.p10};
+    int imagearray[] = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5, R.drawable.p6, R.drawable.p7, R.drawable.p8, R.drawable.p9, R.drawable.p10};
 
-    String[] ans={"1","2","3","4","5","6","7","8","9","0"};
+    String[] ans = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
+    int h = 0;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_continue);
 
-        String s = getIntent().getStringExtra("nothing");
-
-        int k = getIntent().getIntExtra("ds",0);
-
-
-        vpager = findViewById(R.id.vpager);
+        puz = findViewById(R.id.vpager);
         skip = findViewById(R.id.skip);
-
-        MyPagerAdapter dp = new MyPagerAdapter(this,imagearray);
-        vpager.setAdapter(dp);
-
-        vpager.setCurrentItem(k);
-        t=vpager.getCurrentItem();
-
-        skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                t++;
-                vpager.setCurrentItem(t);
-            }
-        });
-
-
-        vpager.setCurrentItem(0);
-
-
+        board = findViewById(R.id.level);
         txt = findViewById(R.id.anstext);
-
         remove = findViewById(R.id.remove);
         sub = findViewById(R.id.sub);
         d1 = findViewById(R.id.one);
@@ -85,11 +62,38 @@ public class Continue extends AppCompatActivity {
         setbutton(d9, "9");
         setbutton(d0, "0");
         setbutton(remove, "@drawable/delete");
-        setbutton(sub, "SUBMIT");
+
+
+        h = getIntent().getIntExtra("ds", 0);
+
+        board.setText("LEVEL" + (h + 1));
+        puz.setBackgroundResource(imagearray[h]);
+
+        sub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if (txt.getText().equals(ans[h])) {
+                    h++;
+                    startActivity(new Intent(Continue.this, WinPage.class).putExtra("ds", h));
+                }
+
+
+            }
+        });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 h++;
+                board.setText("LEVEL" + (h + 1));
+                puz.setBackgroundResource(imagearray[h]);
+            }
+        });
+
 
     }
 
-    Double first = 0.0;
 
     void setbutton(Button btn, String s) {
 
@@ -97,15 +101,11 @@ public class Continue extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if (s.equals("@drawable/delete"))
-                {
-                    if (!txt.getText().toString().equals(""))
-                    {
-                        txt.setText(txt.getText().toString().substring(0,txt.getText().toString().length()-1));
+                if (s.equals("@drawable/delete")) {
+                    if (!txt.getText().toString().equals("")) {
+                        txt.setText(txt.getText().toString().substring(0, txt.getText().toString().length() - 1));
                     }
-                }
-                else
-                {
+                } else {
                     txt.setText(txt.getText().toString().concat(s));
                 }
             }

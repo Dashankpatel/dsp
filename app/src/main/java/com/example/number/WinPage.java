@@ -3,7 +3,7 @@ package com.example.number;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,36 +11,27 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
+public class WinPage extends AppCompatActivity {
+    Button con;
 
-    TextView txt1,txt2,txt3;
-    int h= 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
 
-        txt1 = findViewById(R.id.ctnew);
-        txt2 = findViewById(R.id.pzl);
-        txt3 = findViewById(R.id.pro);
+        setContentView(R.layout.activity_win_page);
+        con = findViewById(R.id.con);
 
+        int h = getIntent().getIntExtra("ds", 0);
 
-
-        txt1.setOnClickListener(new View.OnClickListener() {
+        con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent d =new Intent(MainActivity.this,Continue.class);
+                startActivity(new Intent(WinPage.this, Continue.class).putExtra("ds", h));
 
-                d.putExtra("ds",h);
-                startActivity(d);
             }
         });
-
-
-
-
 
 
     }

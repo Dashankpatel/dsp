@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <Button
             android:id="@+id/skip"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -42,18 +42,19 @@
             app:layout_constraintEnd_toStartOf="@+id/level"
             app:layout_constraintStart_toStartOf="@+id/flow" />
 
-        <ImageView
+        <TextView
             android:id="@+id/level"
             android:layout_width="200dp"
             android:layout_height="50dp"
             android:background="@drawable/level_board"
+            android:gravity="center"
+            android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/imageView"
-            app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="@+id/flow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView" />
 
-        <ImageView
+        <Button
             android:id="@+id/hint"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -62,25 +63,23 @@
             app:layout_constraintEnd_toEndOf="@+id/flow"
             app:layout_constraintStart_toEndOf="@+id/level" />
 
-<!--        <ImageView-->
-<!--            android:id="@+id/que"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="@+id/imageView"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/flow" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/que"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="@+id/imageView"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/flow" />-->
 
-        <androidx.viewpager.widget.ViewPager
+        <ImageView
             android:id="@+id/vpager"
             android:layout_width="297dp"
             android:layout_height="441dp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flow">
-
-        </androidx.viewpager.widget.ViewPager>
+            app:layout_constraintTop_toBottomOf="@+id/flow"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -88,8 +87,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="2.4"
-        android:orientation="vertical"
-        android:background="#000000">
+        android:background="#000000"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -100,30 +100,32 @@
                 android:id="@+id/anstext"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/r2"
                 android:layout_margin="5dp"
-                android:textSize="25dp"
-                android:gravity="center"
                 android:layout_weight="1"
-                android:textColor="#000000"/>
+                android:background="@drawable/r2"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
             <Button
                 android:id="@+id/remove"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
                 android:layout_weight="1.8"
-                android:background="@drawable/delete"/>
+                android:background="@drawable/delete" />
+
             <Button
                 android:id="@+id/sub"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="SUBMIT"
+                android:layout_margin="5dp"
                 android:layout_weight="1.6"
                 android:background="#000000"
+                android:text="SUBMIT"
                 android:textColor="#ffffff"
-                android:textStyle="bold"
-                android:layout_margin="5dp"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -133,45 +135,54 @@
             android:layout_weight="1">
 
             <Button
-                style="@style/btn"
                 android:id="@+id/one"
-                android:text="1"/>
-            <Button
                 style="@style/btn"
+                android:text="1" />
+
+            <Button
                 android:id="@+id/two"
-                android:text="2"/>
-            <Button
                 style="@style/btn"
+                android:text="2" />
+
+            <Button
                 android:id="@+id/three"
-                android:text="3"/>
-            <Button
                 style="@style/btn"
+                android:text="3" />
+
+            <Button
                 android:id="@+id/four"
-                android:text="4"/>
-            <Button
                 style="@style/btn"
+                android:text="4" />
+
+            <Button
                 android:id="@+id/five"
-                android:text="5"/>
-            <Button
                 style="@style/btn"
+                android:text="5" />
+
+            <Button
                 android:id="@+id/six"
-                android:text="6"/>
-            <Button
                 style="@style/btn"
+                android:text="6" />
+
+            <Button
                 android:id="@+id/seven"
-                android:text="7"/>
-            <Button
                 style="@style/btn"
+                android:text="7" />
+
+            <Button
                 android:id="@+id/eight"
-                android:text="8"/>
-            <Button
                 style="@style/btn"
+                android:text="8" />
+
+            <Button
                 android:id="@+id/nine"
-                android:text="9"/>
-            <Button
                 style="@style/btn"
+                android:text="9" />
+
+            <Button
                 android:id="@+id/zero"
-                android:text="0"/>
+                style="@style/btn"
+                android:text="0" />
 
         </LinearLayout>
 
