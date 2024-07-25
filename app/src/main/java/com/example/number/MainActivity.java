@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         txt2 = findViewById(R.id.pzl);
         txt3 = findViewById(R.id.pro);
 
+        h = getIntent().getIntExtra("ds", 0);
+
 
 
         txt1.setOnClickListener(new View.OnClickListener() {
