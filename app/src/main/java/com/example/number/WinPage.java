@@ -24,6 +24,7 @@ public class WinPage extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_win_page);
+
         con = findViewById(R.id.con);
         complete = findViewById(R.id.complete);
         menu = findViewById(R.id.menu);
@@ -37,6 +38,7 @@ public class WinPage extends AppCompatActivity {
             public void onClick(View view) {
 
                 startActivity(new Intent(WinPage.this, Continue.class).putExtra("ds", h));
+                finish();
             }
         });
 

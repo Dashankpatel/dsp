@@ -76,6 +76,7 @@ public class Continue extends AppCompatActivity {
                 if (txt.getText().equals(ans[h])) {
                     h++;
                     startActivity(new Intent(Continue.this, WinPage.class).putExtra("ds", h));
+                    finish();
                 }
 
 

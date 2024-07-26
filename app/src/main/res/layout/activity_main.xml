@@ -44,7 +44,7 @@
             android:text="CONTINUE" />
         <TextView
             style="@style/mystyle"
-            android:text="PUZZELE"
+            android:text="PUZZLE"
             android:id="@+id/pzl"/>
         <TextView
             style="@style/mystyle"

@@ -40,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        txt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(MainActivity.this, levels.class).putExtra("ds",h));
+
+            }
+        });
+
 
 
 
