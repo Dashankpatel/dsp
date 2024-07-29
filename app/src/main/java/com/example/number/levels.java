@@ -13,7 +13,7 @@ public class levels extends AppCompatActivity {
 
     GridView list;
 
-    String array[] = {"1","2","3","4","5","6","7","8","9","10"};
+    String array[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class levels extends AppCompatActivity {
 
         int h = getIntent().getIntExtra("ds", 0);
 
-        Myclass ns = new Myclass(array,levels.this,h);
+        Myclass ns = new Myclass(levels.this);
         list.setAdapter(ns);
 
 

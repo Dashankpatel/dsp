@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
                 d.putExtra("ds",h);
                 startActivity(d);
+                finish();
             }
         });
 
