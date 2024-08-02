@@ -1,7 +1,11 @@
 package com.example.number;
 
+import static com.example.number.MainActivity.edit;
+import static com.example.number.MainActivity.sp;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +29,7 @@ public class Continue extends AppCompatActivity {
 
     String[] ans = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
 
-    int h = 0;
+    int i = 0;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -64,31 +68,37 @@ public class Continue extends AppCompatActivity {
         setbutton(remove, "@drawable/delete");
 
 
-        h = getIntent().getIntExtra("ds", 0);
+        i = getIntent().getIntExtra("level", 0);
 
-        board.setText("LEVEL" + (h + 1));
-        puz.setBackgroundResource(imagearray[h]);
+        board.setText("LEVEL" + (i + 1));
+        puz.setBackgroundResource(imagearray[i]);
 
         sub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (txt.getText().equals(ans[i])) {
+                    edit.putString("key"+i,MainActivity.com);
+                    i++;
+                    edit.putInt("value",i);
+                    edit.apply();
+                    startActivity(new Intent(Continue.this, WinPage.class).putExtra("level", i));
 
-                if (txt.getText().equals(ans[h])) {
-                    h++;
-                    startActivity(new Intent(Continue.this, WinPage.class).putExtra("ds", h));
                     finish();
+
                 }
-
-
             }
         });
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 h++;
-                board.setText("LEVEL" + (h + 1));
-                puz.setBackgroundResource(imagearray[h]);
+                edit.putString("key"+i,MainActivity.skip);
+                 i++;
+                edit.putInt("value",i);
+                edit.apply();
+
+                board.setText("LEVEL" + (i + 1));
+                puz.setBackgroundResource(imagearray[i]);
             }
         });
 

@@ -1,7 +1,11 @@
 package com.example.number;
 
+import static com.example.number.MainActivity.edit;
+import static com.example.number.MainActivity.sp;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,9 +19,10 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class WinPage extends AppCompatActivity {
 
-    TextView complete,con,menu;
+    TextView complete, con, menu;
+    int i = 0;
 
-    @SuppressLint({"WrongViewCast", "MissingInflatedId"})
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,16 +34,18 @@ public class WinPage extends AppCompatActivity {
         complete = findViewById(R.id.complete);
         menu = findViewById(R.id.menu);
 
-        int h = getIntent().getIntExtra("ds", 0);
+        i = getIntent().getIntExtra("level", 0);
 
-        complete.setText(" LEVEL  " + h + "  COMPLETED ");
+        complete.setText(" LEVEL  " + i + "  COMPLETED ");
 
         con.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                startActivity(new Intent(WinPage.this, Continue.class).putExtra("ds", h));
+                startActivity(new Intent(WinPage.this , Continue.class).putExtra("level", i));
                 finish();
+
+
+
             }
         });
 
@@ -46,7 +53,7 @@ public class WinPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(WinPage.this, MainActivity.class).putExtra("ds", h));
+                startActivity(new Intent(WinPage.this, MainActivity.class));
             }
         });
 
