@@ -1,6 +1,7 @@
 package com.example.number;
 
 import static com.example.number.MainActivity.edit;
+import static com.example.number.MainActivity.lock;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -47,11 +48,11 @@ public class Myclass extends BaseAdapter {
             txt.setBackgroundResource(R.drawable.tick);
             txt.setText("" + (position + 1));
 
-//            if (MainActivity.sp.getString("key" + (position +1), "").equals(MainActivity.lock))
-//            {
-//                txt.setText(""+(position+1));
-//            }
-
+        }
+        else if (MainActivity.sp.getString("key" + position, "").equals(lock) &&
+                MainActivity.sp.getString("key" + (position-1), "").equals(MainActivity.com))
+        {
+            txt.setText("" + (position + 1));
         }
         else if (MainActivity.sp.getString("key" + position, "").equals(MainActivity.skip))
         {
@@ -67,7 +68,8 @@ public class Myclass extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                if (!MainActivity.sp.getString("key" + position, "").equals(MainActivity.lock))
+                if (!MainActivity.sp.getString("key" + position, "").equals(MainActivity.lock) ||
+                        MainActivity.sp.getString("key" + (position-1), "").equals(MainActivity.com) )
                 {
                     Intent i = new Intent(levels, Continue.class);
                     i.putExtra("level", position);
